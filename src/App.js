@@ -38,11 +38,24 @@ const SimpleCounter = props => {
  function resetCounter() {
    props.setStartParameters({
      countStart: "",
-     mode: 0,
+     mode: 0
    })
    setCount(0);
  }
-  
+// Reanudar
+function resumeCounter() {
+  props.setStartParameters({
+    countStart:"", 
+    mode: 1
+  });
+};
+
+function stopCounter() {
+  props.setStartParameters({
+    countStart:"", 
+    mode: 0
+  });
+}
   
   
   
@@ -132,8 +145,8 @@ const SimpleCounter = props => {
 
         <div id="stop-resume-reset">
           <button className='player-button' onClick={resetCounter}><i className="fa-solid fa-stop"></i></button>
-          <button className='player-button'><i className="fa-solid fa-play"></i></button>
-          <button className='player-button'><i className="fa-solid fa-pause"></i></button>
+          <button className='player-button' onClick={resumeCounter}><i className="fa-solid fa-play"></i></button>
+          <button className='player-button' onClick={stopCounter}><i className="fa-solid fa-pause"></i></button>
         </div>
 
 
