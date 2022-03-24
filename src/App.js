@@ -3,27 +3,41 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 const SimpleCounter = props => {
-  const [input, setInput]= useState(0);
+  const [input, setInput] = useState(0);
   const [count, setCount] = useState(Number(props.countStart));
+  const [alarm, setAlarm] = useState("");
+  const [isAlarmActivated, toggleAlarm] = useState(false);
 
   React.useEffect(() => {
-    
-    const timer = window.setInterval(() => {setCount(prevCount => prevCount + Number(props.mode)); }, 1000);
+
+    const timer = window.setInterval(() => { setCount(prevCount => prevCount + Number(props.mode)); 
+     let alarmVariable =  isAlarmActivated && (alarm === count) ? alert("Es hora!!!"): null}, 1000);     // Funcionamiento alarma
     return () => {
       window.clearInterval(timer);
-      
+
     };
   })
 
-  function startCountdown () {
+  // Conteo regresivo
+  function startCountdown() {
     props.setStartParameters({
       countStart: '',
       mode: "-1",
     })
     setCount(Number(input))
-   };
-
+  };
+ // Impide que el conteo regresivo entregue números negativos
   let stringTimer = count >= 0 ? count.toString() : "0";
+
+  // Alarma 
+  function triggerAlarm () {
+  toggleAlarm(true);
+ };
+  
+  
+  
+  
+  
   let digitos = {
     d1: 0,
     d2: 0,
@@ -93,12 +107,24 @@ const SimpleCounter = props => {
 
       </div>
 
-      <input type='number' placeholder='Number to start countdown' id='countdownInput' onChange={(e)=>{
-          setInput(e.target.value)
-        }} />
-      <button id='startCountdownButton' onClick={startCountdown}>Start Countdown</button>
+      <div className="tools-container">
+        <div id="countdown">
+          <input type='number' placeholder='Number to start countdown' id='countdownInput' onChange={(e) => {
+            setInput(e.target.value)
+          }} />
+          <button id='startCountdownButton' onClick={startCountdown}>Start Countdown</button>
+        </div>
+
+        <div id="alert">
+          <input type='number' placeholder='Alert number' id='alertInput' onChange={(e) => {
+            setAlarm(Number(e.target.value))
+          }} />
+          <button id='startCountdownButton' onClick={triggerAlarm}>Set alarm</button>
+
+        </div>
 
 
+      </div>
 
     </div>
   );
@@ -116,7 +142,7 @@ function App() {
   return (
 
     <div>
-      <SimpleCounter countStart={startParameters.countStart} mode={startParameters.mode} setStartParameters={setStartParameters}/>
+      <SimpleCounter countStart={startParameters.countStart} mode={startParameters.mode} setStartParameters={setStartParameters} />
     </div>
   )
 };
