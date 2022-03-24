@@ -3,7 +3,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 const SimpleCounter = props => {
-  const[input, setInput]= useState(0);
+  const [input, setInput]= useState(0);
   const [count, setCount] = useState(Number(props.countStart));
 
   React.useEffect(() => {
@@ -17,12 +17,10 @@ const SimpleCounter = props => {
 
   function startCountdown () {
     props.setStartParameters({
-      countStart: '100',
+      countStart: '',
       mode: "-1",
     })
-
     setCount(Number(input))
-
    };
 
   let stringTimer = count >= 0 ? count.toString() : "0";
