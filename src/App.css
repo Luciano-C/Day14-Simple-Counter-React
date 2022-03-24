@@ -86,3 +86,11 @@
   flex-wrap: nowrap;
   background-color: #e5e7eb4f;
 }
+
+.global-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+  
+}

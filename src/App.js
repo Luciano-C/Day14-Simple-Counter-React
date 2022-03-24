@@ -116,7 +116,7 @@ function stopCounter() {
 
 
   return (
-    <div>
+    <div className='global-container'>
       <div className='clock-container'>
         <div className='clockImg flex-item'><i className="fa-regular fa-clock"></i></div>
         <div className='digito6 flex-item'>{digitos.d6}</div>
