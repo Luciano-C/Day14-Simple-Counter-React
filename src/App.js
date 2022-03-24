@@ -5,10 +5,13 @@ import React, { useState, useEffect } from 'react';
 const SimpleCounter = props => {
   const[input, setInput]= useState(0);
   const [count, setCount] = useState(Number(props.countStart));
-  useEffect(() => {
-    const timer = window.setInterval(() => { setCount(prevCount => prevCount + Number(props.mode)); }, 1000);
+
+  React.useEffect(() => {
+    
+    const timer = window.setInterval(() => {setCount(prevCount => prevCount + Number(props.mode)); }, 1000);
     return () => {
       window.clearInterval(timer);
+      
     };
   })
 
@@ -89,11 +92,13 @@ const SimpleCounter = props => {
         <div className='digito3 flex-item'>{digitos.d3}</div>
         <div className='digito2 flex-item'>{digitos.d2}</div>
         <div className='digito1 flex-item'>{digitos.d1}</div>
-        <input type='number' placeholder='Number to start countdown' id='countdownInput' onChange={(e)=>{
+
+      </div>
+
+      <input type='number' placeholder='Number to start countdown' id='countdownInput' onChange={(e)=>{
           setInput(e.target.value)
         }} />
       <button id='startCountdownButton' onClick={startCountdown}>Start Countdown</button>
-      </div>
 
 
 
@@ -103,12 +108,19 @@ const SimpleCounter = props => {
 
 
 
-
 function App() {
   const [startParameters, setStartParameters] = useState({
     countStart: "0",
-    mode: "1",
+    mode: "1"
   });
+
+ function startCountdown () {
+   setStartParameters({
+    countStart: "100",
+    mode: "-1"
+  });
+ };
+
 
   return (
 
