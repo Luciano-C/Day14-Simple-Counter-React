@@ -65,3 +65,24 @@
   margin-bottom: 5%;
   
 }
+
+.tools-container {
+  display: flex;
+  margin-top: 1%;
+  justify-content: space-between;
+  width: 50%;
+}
+
+#setAlarmButton, #startCountdownButton {
+  width: 20vh;
+  background-color: blue;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.player-button {
+  width: 5vh;
+  flex-wrap: nowrap;
+  background-color: #e5e7eb4f;
+}

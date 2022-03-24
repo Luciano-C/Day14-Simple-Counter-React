@@ -9,12 +9,12 @@ const SimpleCounter = props => {
   const [isAlarmActivated, toggleAlarm] = useState(false);
 
   React.useEffect(() => {
-
-    const timer = window.setInterval(() => { setCount(prevCount => prevCount + Number(props.mode)); 
-     let alarmVariable =  isAlarmActivated && (alarm === count) ? alert("Es hora!!!"): null}, 1000);     // Funcionamiento alarma
+    // Funcionamiento alarma | Se declara variable para poder asignar el valor null en ternario
+    let alarmVariable =  isAlarmActivated && (alarm === count) ? alert("Es hora!!!"): null; 
+    // Funcionamiento normal del contador
+    const timer = window.setInterval(() => { setCount(prevCount => prevCount + Number(props.mode));}, 1000);     
     return () => {
       window.clearInterval(timer);
-
     };
   })
 
@@ -34,6 +34,14 @@ const SimpleCounter = props => {
   toggleAlarm(true);
  };
   
+ // Reset
+ function resetCounter() {
+   props.setStartParameters({
+     countStart: "",
+     mode: 0,
+   })
+   setCount(0);
+ }
   
   
   
@@ -119,8 +127,13 @@ const SimpleCounter = props => {
           <input type='number' placeholder='Alert number' id='alertInput' onChange={(e) => {
             setAlarm(Number(e.target.value))
           }} />
-          <button id='startCountdownButton' onClick={triggerAlarm}>Set alarm</button>
+          <button id='setAlarmButton' onClick={triggerAlarm}>Set alarm</button>
+        </div>
 
+        <div id="stop-resume-reset">
+          <button className='player-button' onClick={resetCounter}><i className="fa-solid fa-stop"></i></button>
+          <button className='player-button'><i className="fa-solid fa-play"></i></button>
+          <button className='player-button'><i className="fa-solid fa-pause"></i></button>
         </div>
 
 
