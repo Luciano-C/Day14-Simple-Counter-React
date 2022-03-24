@@ -112,13 +112,6 @@ function App() {
     mode: "1"
   });
 
- function startCountdown () {
-   setStartParameters({
-    countStart: "100",
-    mode: "-1"
-  });
- };
-
 
   return (
 
